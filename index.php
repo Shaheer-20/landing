@@ -272,6 +272,44 @@ $otherCompanies = $gdv->getOtherCompanies();
             overflow: hidden;
         }
         
+        /* Ensure carousel content is properly positioned */
+        .hero .carousel {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero .carousel-inner {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero .carousel-item {
+            position: relative;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+        
+        /* Smooth slide transitions for carousel */
+        .carousel-item {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .carousel-item.active,
+        .carousel-item-next,
+        .carousel-item-prev {
+            display: block;
+        }
+        
+        .carousel-item-next:not(.carousel-item-start),
+        .active.carousel-item-end {
+            transform: translateX(100%);
+        }
+        
+        .carousel-item-prev:not(.carousel-item-end),
+        .active.carousel-item-start {
+            transform: translateX(-100%);
+        }
+        
         .hero::before {
             content: '';
             position: absolute;
@@ -282,9 +320,45 @@ $otherCompanies = $gdv->getOtherCompanies();
             z-index: 0;
         }
         
-        .hero-content {
-            position: relative;
-            z-index: 1;
+        /* Remove the old background since we're using carousel backgrounds */
+        .hero::before {
+            display: none;
+        }
+        
+        /* Ensure smooth carousel transitions */
+        .carousel {
+            overflow: hidden;
+        }
+        
+        .carousel-inner {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Ensure all carousel items have consistent dimensions */
+        .carousel-item {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Smooth transitions for hero content elements */
+        .hero-title,
+        .hero-subtitle,
+        .hero-card {
+            will-change: opacity, transform;
+        }
+        
+        /* Ensure consistent positioning for all carousel items */
+        .carousel-item .row {
+            min-height: 400px;
+            align-items: center;
+            padding: 2rem 0;
+        }
+        
+        .carousel-item .col-lg-6 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem;
         }
 
         .hero-badge {
@@ -293,11 +367,13 @@ $otherCompanies = $gdv->getOtherCompanies();
 
         .hero-title {
             font-weight: 800;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3.5rem);
             color: #fff;
-            line-height: 1.1;
+            line-height: 1.2;
             letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         .text-gradient {
@@ -308,11 +384,13 @@ $otherCompanies = $gdv->getOtherCompanies();
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            max-width: 500px;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            max-width: 450px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         .hero-cta {
@@ -456,12 +534,16 @@ $otherCompanies = $gdv->getOtherCompanies();
             }
             
             .hero-title {
-                font-size: clamp(2rem, 4vw, 3rem);
+                font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+                line-height: 1.3;
+                margin-bottom: 1rem;
             }
             
             .hero-subtitle {
-                font-size: 1.1rem;
-                margin: 0 auto 2rem auto;
+                font-size: 1rem;
+                line-height: 1.4;
+                margin: 0 auto 1.5rem auto;
+                max-width: 400px;
             }
             
             .hero-cta {
@@ -481,6 +563,12 @@ $otherCompanies = $gdv->getOtherCompanies();
             
             .floating-card {
                 display: none;
+            }
+            
+            .hero-card {
+                margin: 1rem auto 0 auto;
+                max-width: 300px;
+                padding: 1.25rem;
             }
         }
 
@@ -654,48 +742,7 @@ $otherCompanies = $gdv->getOtherCompanies();
             font-size: 2rem;
         }
 
-        /* Footer */
-        .footer {
-            background: var(--c-primary);
-            color: #9ca3af;
-            position: relative;
-        }
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
-        }
-        .footer h5 {
-            color: #fff;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        .footer a {
-            color: #9ca3af;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        .footer a:hover {
-            color: var(--c-accent);
-        }
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            margin-right: 1rem;
-            transition: all 0.3s ease;
-        }
-        .social-links a:hover {
-            background: var(--c-accent);
-            color: white;
-            transform: translateY(-2px);
-        }
+
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -861,28 +908,75 @@ $otherCompanies = $gdv->getOtherCompanies();
   border-radius: 50%;
   background: #f0f4ff;
 }
-/* Hero carousel images and cards */
+/* Hero carousel images and cards - Uniform positioning */
 .hero-img {
-  max-width: 90%;
-  max-height: 350px;
+  width: 100%;
+  height: 400px;
   object-fit: cover;
   border-radius: 1.5rem;
   box-shadow: 0 8px 32px rgba(99,91,255,0.10);
+  transition: all 0.5s ease;
 }
+
+.hero-content {
+  height: auto;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 0;
+  overflow: hidden;
+}
+
+.hero-title {
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  transition: all 0.5s ease;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  max-width: 450px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  transition: all 0.5s ease;
+}
+
 .hero-card {
   background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(99,91,255,0.07);
-  padding: 1rem 1.5rem;
-  display: inline-block;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(99,91,255,0.10);
   min-width: 220px;
   max-width: 350px;
+  transition: all 0.5s ease;
+  margin-top: 1rem;
 }
 @media (max-width: 991.98px) {
   .hero-img {
-    max-width: 100%;
-    max-height: 220px;
+    width: 100%;
+    height: 300px;
     margin-bottom: 1rem;
+  }
+  .hero-content {
+    height: auto;
+    min-height: 300px;
+    padding: 1rem 0;
+  }
+  
+  .carousel-item .row {
+    min-height: 300px;
+  }
+  
+  .carousel-item .col-lg-6 {
+    min-height: 200px;
   }
   .hero-card {
     min-width: 180px;
@@ -895,17 +989,27 @@ $otherCompanies = $gdv->getOtherCompanies();
     transform: translateY(-50%);
     width: 48px;
     height: 48px;
-    z-index: 2;
+    z-index: 10;
     opacity: 0.85;
-    /* Move buttons further outside the content area */
-    margin-top: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border: none;
+    transition: all 0.3s ease;
 }
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 1;
+}
+
 .carousel-control-prev {
-    left: -32px;
+    left: 20px;
     right: auto;
+    display: none !important; /* Completely hide the previous button */
 }
+
 .carousel-control-next {
-    right: -32px;
+    right: 20px;
     left: auto;
 }
 @media (max-width: 991.98px) {
@@ -914,18 +1018,46 @@ $otherCompanies = $gdv->getOtherCompanies();
         height: 40px;
     }
     .carousel-control-prev {
-        left: -12px;
+        left: 20px;
     }
     .carousel-control-next {
-        right: -12px;
+        right: 20px;
     }
 }
 @media (max-width: 575.98px) {
     .carousel-control-prev {
-        left: 0;
+        left: 5px;
     }
     .carousel-control-next {
-        right: 0;
+        right: 5px;
+    }
+    
+    .hero-title {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        line-height: 1.4;
+        margin-bottom: 0.75rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+        max-width: 350px;
+    }
+    
+    .hero-content {
+        min-height: 200px;
+        padding: 0.75rem 0;
+    }
+    
+    .hero-card {
+        padding: 1rem;
+        margin-top: 0.75rem;
+    }
+    
+    .carousel-item .row {
+        min-height: 250px;
+        padding: 1rem 0;
     }
 }
     </style>
@@ -935,7 +1067,7 @@ $otherCompanies = $gdv->getOtherCompanies();
 
     <section id="hero" class="hero">
         <!-- Background Carousel -->
-        <div id="heroBgCarousel" class="carousel slide hero-bg-carousel" data-bs-ride="carousel" data-bs-interval="5000" data-bs-wrap="false" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden;">
+        <div id="heroBgCarousel" class="carousel slide hero-bg-carousel" data-bs-ride="carousel" data-bs-interval="5000" data-bs-wrap="true" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden;">
             <div class="carousel-inner" style="width:100%;height:100%;">
                 <div class="carousel-item active" style="width:100%;height:100%;">
                     <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80" class="d-block w-100 h-100 hero-bg-img" alt="Pro Gee Dee Ventures background" style="object-fit:cover;filter:blur(16px) brightness(0.7);height:100%;">
@@ -949,31 +1081,35 @@ $otherCompanies = $gdv->getOtherCompanies();
                 <div class="carousel-item" style="width:100%;height:100%;">
                     <img src="assets/view-brilliant-cartoon-diamond.jpg" class="d-block w-100 h-100 hero-bg-img" alt="Liyas Gold and Diamonds background" style="object-fit:cover;filter:blur(16px) brightness(0.7);height:100%;">
                 </div>
+                <div class="carousel-item" style="width:100%;height:100%;">
+                    <img src="assets/construction-silhouette.jpg" class="d-block w-100 h-100 hero-bg-img" alt="Liyas Construction background" style="object-fit:cover;filter:blur(16px) brightness(0.7);height:100%;">
+                </div>
+                <div class="carousel-item" style="width:100%;height:100%;">
+                    <img src="assets/delicious-products-arrangement-bakery.jpg" class="d-block w-100 h-100 hero-bg-img" alt="Liyas Bakes and Cafe background" style="object-fit:cover;filter:blur(16px) brightness(0.7);height:100%;">
+                </div>
             </div>
         </div>
         <!-- End Background Carousel -->
         <div class="container">
             <div class="row align-items-center min-vh-100">
                 <div class="col-12">
-                    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-wrap="false">
+                    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-wrap="true">
                         <div class="carousel-inner">
                             <!-- Slide 1: Pro Gee Dee Ventures -->
                             <div class="carousel-item active">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 order-lg-1 order-2">
                                         <div class="hero-content">
-                                            <h1 class="hero-title">Pro Gee Dee Ventures Private Limited</h1>
+                                            <h1 class="hero-title">Pro Gee Dee Ventures</h1>
                                             <p class="hero-subtitle">
-                                                Strategic investments across technology, gold, diamonds, and digital innovation. We partner with ambitious companies to drive sustainable growth, unlock new opportunities, and shape tomorrow’s market leaders.
+                                                Strategic investments across technology, gold, diamonds, and digital innovation. Partnering with ambitious companies to drive sustainable growth and shape tomorrow's market leaders.
                                             </p>
-                                            <div class="hero-card mt-4">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-chart-line fa-2x text-primary me-3"></i>
-                                                    <div>
-                                                        <div class="fw-bold">156% Portfolio Growth</div>
-                                                        <div class="text-muted small">Our portfolio companies have grown by 156% in the last year.</div>
-                                                    </div>
-                                                </div>
+
+                                            <div class="hero-cta mt-4">
+                                                <a href="#" class="btn btn-primary btn-lg me-3">
+                                                    <i class="fas fa-arrow-right me-2"></i>
+                                                    Learn More
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -989,16 +1125,14 @@ $otherCompanies = $gdv->getOtherCompanies();
                                         <div class="hero-content">
                                             <h1 class="hero-title">Goldendream</h1>
                                             <p class="hero-subtitle">
-                                                Goldendream offers a range of gold, diamond, and gemstone jewelry, including necklaces, earrings, bangles, and rings. With a focus on quality and customer trust, they provide investment plans and customization options for every client.
+                                                Premium gold, diamond, and gemstone jewelry with investment plans and customization options. Trusted by 10,000+ clients for quality and ethical sourcing.
                                             </p>
-                                            <div class="hero-card mt-4">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-gem fa-2x text-warning me-3"></i>
-                                                    <div>
-                                                        <div class="fw-bold">Trusted by 10,000+ Clients</div>
-                                                        <div class="text-muted small">Ethically sourced, high-quality gold and diamonds.</div>
-                                                    </div>
-                                                </div>
+
+                                            <div class="hero-cta mt-4">
+                                                <a href="https://goldendream.in/" target="_blank" class="btn btn-primary btn-lg me-3">
+                                                    <i class="fas fa-external-link-alt me-2"></i>
+                                                    Visit Website
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -1014,16 +1148,14 @@ $otherCompanies = $gdv->getOtherCompanies();
                                         <div class="hero-content">
                                             <h1 class="hero-title">The Brand Weave</h1>
                                             <p class="hero-subtitle">
-                                                A forward-thinking digital agency specializing in creative solutions, digital marketing, branding, and design. Empowering businesses to grow online with data-driven strategies and collaborative partnerships.
+                                                Digital agency specializing in creative solutions, digital marketing, branding, and design. Empowering businesses to grow online with data-driven strategies.
                                             </p>
-                                            <div class="hero-card mt-4">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-bolt fa-2x text-success me-3"></i>
-                                                    <div>
-                                                        <div class="fw-bold">Digital Growth Experts</div>
-                                                        <div class="text-muted small">Delivering measurable results for your brand.</div>
-                                                    </div>
-                                                </div>
+
+                                            <div class="hero-cta mt-4">
+                                                <a href="https://thebrandweave.com/" target="_blank" class="btn btn-primary btn-lg me-3">
+                                                    <i class="fas fa-external-link-alt me-2"></i>
+                                                    Visit Website
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -1039,16 +1171,14 @@ $otherCompanies = $gdv->getOtherCompanies();
                                         <div class="hero-content">
                                             <h1 class="hero-title">Liyas Gold and Diamonds</h1>
                                             <p class="hero-subtitle">
-                                                Dedicated to providing trusted, high-quality gold and diamond jewelry. With a focus on ethical sourcing, customization, and client empowerment, they help secure your financial future with confidence.
+                                                Trusted, high-quality gold and diamond jewelry with ethical sourcing and customization. Helping secure your financial future with confidence and award-winning service.
                                             </p>
-                                            <div class="hero-card mt-4">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="fas fa-medal fa-2x text-info me-3"></i>
-                                                    <div>
-                                                        <div class="fw-bold">Award-Winning Service</div>
-                                                        <div class="text-muted small">Decades of experience and customer satisfaction.</div>
-                                                    </div>
-                                                </div>
+
+                                            <div class="hero-cta mt-4">
+                                                <a href="https://liyasgoldanddiamonds.com/" target="_blank" class="btn btn-primary btn-lg me-3">
+                                                    <i class="fas fa-external-link-alt me-2"></i>
+                                                    Visit Website
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -1057,9 +1187,55 @@ $otherCompanies = $gdv->getOtherCompanies();
                                     </div>
                                 </div>
                             </div>
+                            <!-- Slide 5: Liyas Construction -->
+                            <div class="carousel-item">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 order-lg-1 order-2">
+                                        <div class="hero-content">
+                                            <h1 class="hero-title">Liyas Construction</h1>
+                                            <p class="hero-subtitle">
+                                                Comprehensive construction services including residential, commercial, and industrial projects. Specializing in modern architecture, sustainable building practices, and turnkey solutions with quality craftsmanship.
+                                            </p>
+
+                                            <div class="hero-cta mt-4">
+                                                <a href="coming-soon-construction.html" class="btn btn-primary btn-lg me-3">
+                                                    <i class="fas fa-external-link-alt me-2"></i>
+                                                    View Website
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 order-lg-2 order-1 text-center mb-4 mb-lg-0">
+                                        <img src="assets/construction-silhouette.jpg" alt="Liyas Construction" class="img-fluid rounded-4 shadow-lg hero-img">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 6: Liyas Bakes and Cafe -->
+                            <div class="carousel-item">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 order-lg-1 order-2">
+                                        <div class="hero-content">
+                                            <h1 class="hero-title">Liyas Bakes and Cafe</h1>
+                                            <p class="hero-subtitle">
+                                                Premium bakery and cafe serving fresh pastries, cakes, breads, and specialty coffee. Offering custom cakes for celebrations, corporate events, and daily fresh baked goods with exceptional taste and presentation.
+                                            </p>
+
+                                            <div class="hero-cta mt-4">
+                                                <a href="coming-soon-bakery.html" class="btn btn-primary btn-lg me-3">
+                                                    <i class="fas fa-external-link-alt me-2"></i>
+                                                    View Website
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 order-lg-2 order-1 text-center mb-4 mb-lg-0">
+                                        <img src="assets/delicious-products-arrangement-bakery.jpg" alt="Liyas Bakes and Cafe" class="img-fluid rounded-4 shadow-lg hero-img">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- Carousel controls -->
-                        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                        <!-- Carousel controls - Only Next button visible -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" style="display: none;">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
@@ -1073,180 +1249,135 @@ $otherCompanies = $gdv->getOtherCompanies();
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="row">
-                <?php foreach($stats as $index => $stat): ?>
-                <div class="col-lg-3 col-md-6">
-                    <div class="stat-item fade-in-up delay-<?php echo $index + 1; ?>">
-                        <span class="stat-number">
-                            <?php echo $stat['prefix'] . $stat['number'] . $stat['suffix']; ?>
-                        </span>
-                        <div class="stat-label"><?php echo htmlspecialchars($stat['label']); ?></div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-                </div>
-        </div>
-    </section>
+
 
     <main>
         <section id="ventures" class="section bg-light">
             <div class="container">
-                <h2 style="text-align: center;">Our Investment Portfolio</h2>
-                <p style="text-align: center; color: #666;">Strategic investments across high-growth sectors that are shaping tomorrow's economy.</p>
-                <div class="portfolio-cards-container">
-                  <div class="row justify-content-center g-4">
-                    <div class="col-md-4 col-lg-3">
-                      <div class="portfolio-card main-card">
-                        <img src="https://placehold.co/80x80/7e7fff/fff?text=GDV" alt="Gee Dee Ventures" class="card-img">
-                        <div class="card-title">Gee Dee Ventures<br>Private Limited</div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 col-lg-3">
-                      <div class="portfolio-card">
-                        <img src="https://placehold.co/60x60/00d4aa/fff?text=GD" alt="Goldendream" class="card-img">
-                        <div class="card-title">Goldendream</div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 col-lg-3">
-                      <div class="portfolio-card">
-                        <img src="https://placehold.co/60x60/00d4aa/fff?text=BW" alt="Thebandweave" class="card-img">
-                        <div class="card-title">Thebandweave</div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 col-lg-3">
-                      <div class="portfolio-card">
-                        <img src="https://placehold.co/60x60/00d4aa/fff?text=LB" alt="Liyasbakes" class="card-img">
-                        <div class="card-title">Liyasbakes</div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 col-lg-3">
-                      <div class="portfolio-card">
-                        <img src="https://placehold.co/60x60/00d4aa/fff?text=LGD" alt="Liyasgldanddiamonds" class="card-img">
-                        <div class="card-title">Liyasgldanddiamonds</div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 col-lg-3">
-                      <div class="portfolio-card">
-                        <img src="https://placehold.co/60x60/00d4aa/fff?text=LC" alt="Liyasconstructions" class="card-img">
-                        <div class="card-title">Liyasconstructions</div>
-                      </div>
-                    </div>
-                    <div class="col-md-4 col-lg-3">
-                      <div class="portfolio-card">
-                        <img src="https://placehold.co/60x60/00d4aa/fff?text=PRO" alt="Pro" class="card-img">
-                        <div class="card-title">Pro</div>
-                      </div>
-                    </div>
-                  </div>
+                <h2 style="text-align: center;">Our Ventures</h2>
+                <div class="text-center">
+                    <img src="assets/BROCHUR_page-00012.jpg" alt="Investment Portfolio Brochure" class="img-fluid" style="max-width: 100%; height: auto;">
                 </div>
             </div>
         </section>
 
-        <!-- Place this after the hero section, before the portfolio cards -->
-        <section id="about-pro-gdv" class="section bg-light">
-          <div class="container">
-            <div class="text-center mb-5 pb-3 fade-in-up">
-              <h2 class="section-title">About Pro Gee Dee Ventures Private Limited</h2>
-              <p class="section-subtitle">
-                Pro Gee Dee Ventures Private Limited is committed to empowering innovation and growth across diverse industries. Our approach is rooted in partnership, expertise, and a vision for a sustainable future.
-              </p>
-            </div>
-            <div class="row g-4 justify-content-center">
-              <!-- Goldendream -->
-              <div class="col-md-6 col-lg-4">
-                <div class="about-card h-100 text-center p-4">
-                  <div class="about-icon mb-3">
-                    <img src="https://goldendream.in/landing/landing_assets/images/gdLogo.png" alt="Goldendream Logo" style="width:48px;height:48px;border-radius:50%;">
-                  </div>
-                  <h5 class="fw-bold mb-2">Goldendream</h5>
-                  <p class="text-muted mb-3">
-                    Goldendream offers a range of gold, diamond, and gemstone jewelry, including necklaces, earrings, bangles, and rings. With a focus on quality and customer trust, they provide investment plans and customization options for every client.
-                  </p>
-                  <a href="https://goldendream.in/" class="btn btn-outline-primary btn-sm" target="_blank">Visit Website</a>
-                </div>
-              </div>
-              <!-- The Brand Weave -->
-              <div class="col-md-6 col-lg-4">
-                <div class="about-card h-100 text-center p-4">
-                  <div class="about-icon mb-3">
-                    <img src="https://thebrandweave.com/assets/images/logo.png" alt="The Brand Weave Logo" style="width:48px;height:48px;border-radius:50%;">
-                  </div>
-                  <h5 class="fw-bold mb-2">The Brand Weave</h5>
-                  <p class="text-muted mb-3">
-                    The Brand Weave is a forward-thinking digital agency specializing in creative solutions, digital marketing, branding, and design. They empower businesses to grow online with data-driven strategies and collaborative partnerships.
-                  </p>
-                  <a href="https://thebrandweave.com/" class="btn btn-outline-primary btn-sm" target="_blank">Visit Website</a>
-                </div>
-              </div>
-              <!-- Liyas Gold and Diamonds -->
-              <div class="col-md-6 col-lg-4">
-                <div class="about-card h-100 text-center p-4">
-                  <div class="about-icon mb-3">
-                    <img src="https://liyasgoldanddiamonds.com/assets/images/logo.png" alt="Liyas Gold and Diamonds Logo" style="width:48px;height:48px;border-radius:50%;">
-                  </div>
-                  <h5 class="fw-bold mb-2">Liyas Gold and Diamonds</h5>
-                  <p class="text-muted mb-3">
-                    Liyas Gold and Diamonds is dedicated to providing trusted, high-quality gold and diamond jewelry. With a focus on ethical sourcing, customization, and client empowerment, they help secure your financial future with confidence.
-                  </p>
-                  <a href="https://liyasgoldanddiamonds.com/" class="btn btn-outline-primary btn-sm" target="_blank">Visit Website</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="overview" class="section">
+        <!-- YouTube Video Section -->
+        <section id="youtube-video" class="section">
             <div class="container">
-                <div class="row align-items-center g-5">
-                    <div class="col-lg-6 fade-in-left">
-                        <div class="position-relative">
-                            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1484&auto=format&fit=crop" 
-                                 class="img-fluid rounded-4 shadow-lg" alt="Our team in action">
-                </div>
-                    </div>
-                    <div class="col-lg-6 fade-in-right">
-                        <h2 class="section-title mb-4">Where Vision Meets Execution</h2>
-                        <p class="section-subtitle mb-4">We don't just invest capital—we forge partnerships. Our hands-on approach combines strategic guidance, operational expertise, and cutting-edge resources to accelerate growth and unlock potential.</p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center fade-in-up">
+                        <h2 class="section-title mb-4">Watch Our Latest Videos</h2>
+                        <p class="section-subtitle mb-5">Discover our vision and mission through our latest presentations</p>
                         
-                <div class="row g-4">
-                            <?php foreach($features as $index => $feature): ?>
-                            <div class="col-sm-6">
-                                <div class="feature-item text-start">
-                                    <div class="feature-icon bg-<?php echo $feature['color']; ?> bg-opacity-10">
-                                        <i class="<?php echo $feature['icon']; ?> text-<?php echo $feature['color']; ?>"></i>
+                        <div class="row g-4">
+                            <!-- Video 1 -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="video-card h-100">
+                                    <div class="video-thumbnail position-relative" style="cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); aspect-ratio: 16/9;" onclick="openVideoModal('NYHDu0_5afQ', 'Gee Dee Ventures Presentation')">
+                                        <img src="https://img.youtube.com/vi/NYHDu0_5afQ/maxresdefault.jpg" 
+                                             alt="Gee Dee Ventures Video" 
+                                             class="img-fluid w-100 h-100" 
+                                             style="transition: transform 0.3s ease; object-fit: cover;">
+                                        <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" 
+                                             style="background: rgba(255,0,0,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                                            <i class="fas fa-play text-white" style="font-size: 18px; margin-left: 3px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info mt-3">
+                                        <h6 class="fw-bold mb-2">Gee Dee Ventures Presentation</h6>
+                                        <p class="text-muted small mb-0">Our latest company presentation</p>
+                                    </div>
+                                </div>
                             </div>
-                                    <h6 class="fw-bold mb-2"><?php echo htmlspecialchars($feature['title']); ?></h6>
-                                    <p class="text-muted mb-0"><?php echo htmlspecialchars($feature['description']); ?></p>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
+                            
+                            <!-- Video 2 -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="video-card h-100">
+                                    <div class="video-thumbnail position-relative" style="cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); aspect-ratio: 16/9;" onclick="openVideoModal('LfKhSRvn-Es', 'Gee Dee Ventures Video 2')">
+                                        <img src="https://img.youtube.com/vi/LfKhSRvn-Es/hqdefault.jpg" 
+                                             alt="Gee Dee Ventures Video 2" 
+                                             class="img-fluid w-100 h-100" 
+                                             style="transition: transform 0.3s ease; object-fit: cover;"
+                                             onerror="this.src='https://img.youtube.com/vi/LfKhSRvn-Es/mqdefault.jpg'">
+                                        <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" 
+                                             style="background: rgba(255,0,0,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                                            <i class="fas fa-play text-white" style="font-size: 18px; margin-left: 3px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info mt-3">
+                                        <h6 class="fw-bold mb-2">Gee Dee Ventures Video 2</h6>
+                                        <p class="text-muted small mb-0">Additional insights and updates</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Video 3 -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="video-card h-100">
+                                    <div class="video-thumbnail position-relative" style="cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); aspect-ratio: 16/9;" onclick="openVideoModal('gnPM77ECZOM', 'Gee Dee Ventures Video 3')">
+                                        <img src="https://img.youtube.com/vi/gnPM77ECZOM/maxresdefault.jpg" 
+                                             alt="Gee Dee Ventures Video 3" 
+                                             class="img-fluid w-100 h-100" 
+                                             style="transition: transform 0.3s ease; object-fit: cover;">
+                                        <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" 
+                                             style="background: rgba(255,0,0,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                                            <i class="fas fa-play text-white" style="font-size: 18px; margin-left: 3px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info mt-3">
+                                        <h6 class="fw-bold mb-2">Gee Dee Ventures Video 3</h6>
+                                        <p class="text-muted small mb-0">More about our ventures</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Call to Action Section -->
+        <!-- Video Modal -->
+        <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title text-white" id="videoModalLabel">Gee Dee Ventures Presentation</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="ratio ratio-16x9">
+                            <iframe id="youtubeIframe" 
+                                    src="" 
+                                    title="Gee Dee Ventures Video" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action Section - The Brand Weave -->
         <section class="section" style="background: linear-gradient(135deg, var(--c-primary) 0%, #1e293b 100%);">
             <div class="container text-center">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 fade-in-up">
-                        <h2 class="section-title text-white mb-4">Ready to Partner With Us?</h2>
+                        <h2 class="section-title text-white mb-4">Ready to Partner With The Brand Weave?</h2>
                         <p class="section-subtitle text-white-50 mb-5">
-                            Whether you're a startup looking for investment or an established company seeking strategic partnership, 
-                            we're here to help you achieve your next level of growth.
+                            The Brand Weave is a premier digital agency specializing in creative solutions, digital marketing, branding, and design. 
+                            We empower businesses to grow online with data-driven strategies and innovative design solutions. 
+                            From brand identity to comprehensive digital marketing campaigns, we deliver measurable results that drive your business forward.
                         </p>
                         <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                            <a href="#contact" class="btn btn-primary btn-lg px-5">
-                                <i class="fas fa-handshake me-2"></i>
+                            <a href="https://thebrandweave.com/" target="_blank" class="btn btn-danger btn-lg px-5" style="background: linear-gradient(135deg, #dc3545 0%, #8b0000 100%); border: none; box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);">
+                                <i class="fas fa-external-link-alt me-2"></i>
                                 Partner With Us
                             </a>
-                            <a href="#" class="btn btn-outline-light btn-lg px-5">
-                                <i class="fas fa-download me-2"></i>
-                                Download Portfolio
+                            <a href="https://thebrandweave.com/" target="_blank" class="btn btn-outline-light btn-lg px-5">
+                                <i class="fas fa-globe me-2"></i>
+                                Visit Website
                             </a>
                         </div>
                     </div>
@@ -1254,124 +1385,6 @@ $otherCompanies = $gdv->getOtherCompanies();
             </div>
         </section>
     </main>
-
-    <footer id="contact" class="footer pt-5 pb-4">
-        <div class="container">
-            <div class="row py-5">
-                <div class="col-lg-4 mb-4 mb-lg-0 fade-in-up">
-                    <h5 class="mb-4">Gee Dee Ventures</h5>
-                    <p class="mb-4">Building tomorrow's market leaders through strategic partnerships and innovative investments.</p>
-                    <div class="mb-4">
-                        <p class="mb-2"><strong>Headquarters</strong></p>
-                        <address class="text-muted mb-0">
-                    Venture Towers, MG Road<br>
-                            Mangaluru, Karnataka 575001<br>
-                            India
-                        </address>
-                </div>
-                    <div class="social-links">
-                        <a href="#" aria-label="LinkedIn" title="Follow us on LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" aria-label="Twitter" title="Follow us on Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" aria-label="Facebook" title="Follow us on Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" aria-label="Instagram" title="Follow us on Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-6 mb-4 mb-lg-0 fade-in-up delay-1">
-                    <h5>Company</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#ventures">Portfolio</a></li>
-                        <li class="mb-2"><a href="#overview">About Us</a></li>
-                        <li class="mb-2"><a href="#blog">Insights</a></li>
-                        <li class="mb-2"><a href="#">Careers</a></li>
-                        <li class="mb-2"><a href="#">Press Kit</a></li>
-                        <li class="mb-2"><a href="#">ESG Report</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-3 col-6 mb-4 mb-lg-0 fade-in-up delay-2">
-                    <h5>Contact & Support</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <i class="fas fa-envelope me-2 text-muted"></i>
-                            <a href="mailto:contact@gdventures.com">contact@gdventures.com</a>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-phone me-2 text-muted"></i>
-                            <a href="tel:+911234567890">+91 123 456 7890</a>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-building me-2 text-muted"></i>
-                            <a href="#">Investor Relations</a>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-users me-2 text-muted"></i>
-                            <a href="#">Partnership Inquiries</a>
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-newspaper me-2 text-muted"></i>
-                            <a href="#">Media Inquiries</a>
-                        </li>
-                    </ul>
-                    </div>
-                
-                <div class="col-lg-3 fade-in-up delay-3">
-                    <h5>Stay Updated</h5>
-                    <p class="text-muted mb-3">Get the latest insights and updates from our portfolio companies.</p>
-                    <form class="newsletter-form mb-4" method="POST" action="#" onsubmit="return handleNewsletter(event)">
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Enter your email" required
-                                   style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">
-                            <button class="btn btn-outline-light" type="submit">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="agreeTerms" required>
-                            <label class="form-check-label small text-muted" for="agreeTerms">
-                                I agree to receive updates and marketing communications
-                            </label>
-            </div>
-                    </form>
-                    
-                    <!-- Quick Links -->
-                    <div class="mb-3">
-                        <h6 class="text-white mb-2">Quick Access</h6>
-                        <div class="d-flex flex-wrap gap-2">
-                            <a href="#" class="btn btn-sm btn-outline-light">Investment Criteria</a>
-                            <a href="#" class="btn btn-sm btn-outline-light">Portfolio Login</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <hr class="my-4" style="border-color: rgba(255,255,255,0.1); opacity: 0.3;">
-            
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="text-muted small mb-0">
-                        &copy; <?php echo date("Y"); ?> Gee Dee Ventures Private Limited. All rights reserved.
-                    </p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="d-flex flex-wrap justify-content-md-end gap-3">
-                        <a href="#" class="text-muted small">Privacy Policy</a>
-                        <a href="#" class="text-muted small">Terms of Service</a>
-                        <a href="#" class="text-muted small">Cookie Policy</a>
-                        <a href="#" class="text-muted small">Accessibility</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <!-- Back to Top Button -->
     <a href="#hero" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle back-to-top" 
@@ -1569,15 +1582,142 @@ $otherCompanies = $gdv->getOtherCompanies();
             document.body.classList.add('loaded');
         });
 
-        // Sync hero background carousel with main hero carousel
-        const heroCarousel = document.getElementById('heroCarousel');
-        const heroBgCarousel = document.getElementById('heroBgCarousel');
-        if (heroCarousel && heroBgCarousel) {
-            heroCarousel.addEventListener('slide.bs.carousel', function (event) {
-                const bgCarousel = bootstrap.Carousel.getOrCreateInstance(heroBgCarousel);
-                bgCarousel.to(event.to);
+        // Initialize and sync hero carousels with smooth slide transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroCarousel = document.getElementById('heroCarousel');
+            const heroBgCarousel = document.getElementById('heroBgCarousel');
+            
+            if (heroCarousel && heroBgCarousel) {
+                // Initialize carousels with smooth slide transitions
+                const mainCarousel = new bootstrap.Carousel(heroCarousel, {
+                    interval: 5000,
+                    wrap: true,
+                    ride: 'carousel',
+                    touch: true
+                });
+                
+                const bgCarousel = new bootstrap.Carousel(heroBgCarousel, {
+                    interval: 5000,
+                    wrap: true,
+                    ride: 'carousel',
+                    touch: true
+                });
+                
+                // Sync carousels with smooth slide transitions
+                heroCarousel.addEventListener('slide.bs.carousel', function (event) {
+                    // Smooth transition for background carousel
+                    bgCarousel.to(event.to);
+                });
+                
+                // Add manual navigation sync with smooth transitions
+                document.querySelectorAll('[data-bs-target="#heroCarousel"]').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const direction = this.getAttribute('data-bs-slide');
+                        if (direction === 'prev') {
+                            bgCarousel.prev();
+                        } else if (direction === 'next') {
+                            bgCarousel.next();
+                        }
+                    });
+                });
+                
+                // Pause carousels on hover for better UX
+                heroCarousel.addEventListener('mouseenter', function() {
+                    mainCarousel.pause();
+                    bgCarousel.pause();
+                });
+                
+                heroCarousel.addEventListener('mouseleave', function() {
+                    mainCarousel.cycle();
+                    bgCarousel.cycle();
+                });
+                
+                // Handle carousel errors gracefully
+                heroCarousel.addEventListener('error', function(e) {
+                    console.warn('Carousel error:', e);
+                });
+                
+                // Ensure carousels are properly initialized with smooth slide transitions
+                setTimeout(() => {
+                    if (mainCarousel && bgCarousel) {
+                        mainCarousel.cycle();
+                        bgCarousel.cycle();
+                        
+                        // Verify carousel synchronization
+                        console.log('Carousels initialized with wrap enabled and smooth slide transitions');
+                        console.log('Main carousel wrap:', mainCarousel._config.wrap);
+                        console.log('Background carousel wrap:', bgCarousel._config.wrap);
+                    }
+                }, 100);
+                
+                // Additional sync check for perfect synchronization
+                heroCarousel.addEventListener('slid.bs.carousel', function (event) {
+                    // Ensure background carousel is on the same slide
+                    const activeBgSlide = bgCarousel._element.querySelector('.carousel-item.active');
+                    const activeMainSlide = event.relatedTarget;
+                    
+                    if (activeBgSlide && activeMainSlide) {
+                        const bgIndex = Array.from(bgCarousel._element.querySelectorAll('.carousel-item')).indexOf(activeBgSlide);
+                        const mainIndex = event.to;
+                        
+                        if (bgIndex !== mainIndex) {
+                            bgCarousel.to(mainIndex);
+                        }
+                    }
+                    
+                    // Ensure content is fully visible after transition
+                    const currentSlide = event.relatedTarget;
+                    if (currentSlide) {
+                        currentSlide.querySelector('.hero-content').style.opacity = '1';
+                        currentSlide.querySelector('.hero-img').style.transform = 'scale(1)';
+                    }
+                });
+            }
+        });
+
+        // YouTube Video Modal Function
+        function openVideoModal(videoId, videoTitle) {
+            const modal = new bootstrap.Modal(document.getElementById('videoModal'));
+            const iframe = document.getElementById('youtubeIframe');
+            const modalTitle = document.getElementById('videoModalLabel');
+            
+            // Set the modal title
+            modalTitle.textContent = videoTitle;
+            
+            // Set the YouTube embed URL with autoplay
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+            
+            // Show the modal
+            modal.show();
+            
+            // Clear iframe src when modal is hidden to stop video
+            document.getElementById('videoModal').addEventListener('hidden.bs.modal', function () {
+                iframe.src = '';
             });
         }
+
+        // Add hover effects for video thumbnails
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoThumbnails = document.querySelectorAll('.video-thumbnail');
+            
+            videoThumbnails.forEach(function(thumbnail) {
+                const playButton = thumbnail.querySelector('.play-button-overlay');
+                
+                if (playButton) {
+                    thumbnail.addEventListener('mouseenter', function() {
+                        this.querySelector('img').style.transform = 'scale(1.05)';
+                        playButton.style.transform = 'translate(-50%, -50%) scale(1.1)';
+                        playButton.style.background = 'rgba(255,0,0,1)';
+                    });
+                    
+                    thumbnail.addEventListener('mouseleave', function() {
+                        this.querySelector('img').style.transform = 'scale(1)';
+                        playButton.style.transform = 'translate(-50%, -50%) scale(1)';
+                        playButton.style.background = 'rgba(255,0,0,0.9)';
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
