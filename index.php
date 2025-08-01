@@ -179,8 +179,7 @@ $otherCompanies = $gdv->getOtherCompanies();
     <meta name="language" content="English">
     <meta name="revisit-after" content="7 days">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏢</text></svg>">
+
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Gee Dee Ventures - Building Tomorrow's Market Leaders">
