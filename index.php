@@ -1198,10 +1198,10 @@ $otherCompanies = $gdv->getOtherCompanies();
                                             </p>
 
                                             <div class="hero-cta mt-4">
-                                                <a href="coming-soon-construction.html" class="btn btn-primary btn-lg me-3">
-                                                    <i class="fas fa-external-link-alt me-2"></i>
-                                                    View Website
-                                                </a>
+                                                <button class="btn btn-secondary btn-lg me-3" disabled>
+                                                    <i class="fas fa-clock me-2"></i>
+                                                    Coming Soon
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -1221,10 +1221,10 @@ $otherCompanies = $gdv->getOtherCompanies();
                                             </p>
 
                                             <div class="hero-cta mt-4">
-                                                <a href="coming-soon-bakery.html" class="btn btn-primary btn-lg me-3">
-                                                    <i class="fas fa-external-link-alt me-2"></i>
-                                                    View Website
-                                                </a>
+                                                <button class="btn btn-secondary btn-lg me-3" disabled>
+                                                    <i class="fas fa-clock me-2"></i>
+                                                    Coming Soon
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
