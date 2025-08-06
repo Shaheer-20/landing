@@ -1288,7 +1288,6 @@ $otherCompanies = $gdv->getOtherCompanies();
                                     </div>
                                 </div>
                             </div>
-                            
                             <!-- Video 2 -->
                             <div class="col-lg-4 col-md-6">
                                 <div class="video-card h-100">
@@ -1309,7 +1308,6 @@ $otherCompanies = $gdv->getOtherCompanies();
                                     </div>
                                 </div>
                             </div>
-                            
                             <!-- Video 3 -->
                             <div class="col-lg-4 col-md-6">
                                 <div class="video-card h-100">
@@ -1326,6 +1324,101 @@ $otherCompanies = $gdv->getOtherCompanies();
                                     <div class="video-info mt-3">
                                         <h6 class="fw-bold mb-2">Gee Dee Ventures Video 3</h6>
                                         <p class="text-muted small mb-0">More about our ventures</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Video 4 -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="video-card h-100">
+                                    <div class="video-thumbnail position-relative" style="cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); aspect-ratio: 16/9;" onclick="openVideoModal('IJBZaAmkShM', 'Gee Dee Ventures Special Event')">
+                                        <img src="https://img.youtube.com/vi/IJBZaAmkShM/maxresdefault.jpg" 
+                                             alt="Gee Dee Ventures Special Event" 
+                                             class="img-fluid w-100 h-100" 
+                                             style="transition: transform 0.3s ease; object-fit: cover;">
+                                        <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" 
+                                             style="background: rgba(255,0,0,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                                            <i class="fas fa-play text-white" style="font-size: 18px; margin-left: 3px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info mt-3">
+                                        <h6 class="fw-bold mb-2">Gee Dee Ventures Special Event</h6>
+                                        <p class="text-muted small mb-0">Highlights from our recent event</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Video 5 -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="video-card h-100">
+                                    <div class="video-thumbnail position-relative" style="cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); aspect-ratio: 16/9;" onclick="openVideoModal('_U5HWs1slyo', 'Gee Dee Ventures Community')">
+                                        <img src="https://img.youtube.com/vi/_U5HWs1slyo/maxresdefault.jpg" 
+                                             alt="Gee Dee Ventures Community" 
+                                             class="img-fluid w-100 h-100" 
+                                             style="transition: transform 0.3s ease; object-fit: cover;">
+                                        <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" 
+                                             style="background: rgba(255,0,0,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                                            <i class="fas fa-play text-white" style="font-size: 18px; margin-left: 3px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info mt-3">
+                                        <h6 class="fw-bold mb-2">Gee Dee Ventures Community</h6>
+                                        <p class="text-muted small mb-0">Our community initiatives</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Video 6 -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="video-card h-100">
+                                    <div class="video-thumbnail position-relative" style="cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); aspect-ratio: 16/9;" onclick="openVideoModal('qW1mQ6h0bTk', 'Gee Dee Ventures Success Stories')">
+                                        <img src="https://img.youtube.com/vi/qW1mQ6h0bTk/maxresdefault.jpg" 
+                                             alt="Gee Dee Ventures Success Stories" 
+                                             class="img-fluid w-100 h-100" 
+                                             style="transition: transform 0.3s ease; object-fit: cover;">
+                                        <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" 
+                                             style="background: rgba(255,0,0,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                                            <i class="fas fa-play text-white" style="font-size: 18px; margin-left: 3px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info mt-3">
+                                        <h6 class="fw-bold mb-2">Gee Dee Ventures Success Stories</h6>
+                                        <p class="text-muted small mb-0">Stories of our impact</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Video 7 -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="video-card h-100">
+                                    <div class="video-thumbnail position-relative" style="cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); aspect-ratio: 16/9;" onclick="openVideoModal('t-bOshnRc6s', 'Gee Dee Ventures Insights')">
+                                        <img src="https://img.youtube.com/vi/t-bOshnRc6s/maxresdefault.jpg" 
+                                             alt="Gee Dee Ventures Insights" 
+                                             class="img-fluid w-100 h-100" 
+                                             style="transition: transform 0.3s ease; object-fit: cover;">
+                                        <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" 
+                                             style="background: rgba(255,0,0,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                                            <i class="fas fa-play text-white" style="font-size: 18px; margin-left: 3px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info mt-3">
+                                        <h6 class="fw-bold mb-2">Gee Dee Ventures Insights</h6>
+                                        <p class="text-muted small mb-0">Expert talks and analysis</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Video 8 -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="video-card h-100">
+                                    <div class="video-thumbnail position-relative" style="cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); aspect-ratio: 16/9;" onclick="openVideoModal('37_U6dup0ik', 'Gee Dee Ventures Future Plans')">
+                                        <img src="https://img.youtube.com/vi/37_U6dup0ik/maxresdefault.jpg" 
+                                             alt="Gee Dee Ventures Future Plans" 
+                                             class="img-fluid w-100 h-100" 
+                                             style="transition: transform 0.3s ease; object-fit: cover;">
+                                        <div class="play-button-overlay position-absolute top-50 start-50 translate-middle" 
+                                             style="background: rgba(255,0,0,0.9); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                                            <i class="fas fa-play text-white" style="font-size: 18px; margin-left: 3px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="video-info mt-3">
+                                        <h6 class="fw-bold mb-2">Gee Dee Ventures Future Plans</h6>
+                                        <p class="text-muted small mb-0">A look at what's next</p>
                                     </div>
                                 </div>
                             </div>
