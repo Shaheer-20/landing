@@ -1092,7 +1092,7 @@ $otherCompanies = $gdv->getOtherCompanies();
         <div class="container">
             <div class="row align-items-center min-vh-100">
                 <div class="col-12">
-                    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-wrap="true">
+                    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="70000" data-bs-wrap="true">
                         <div class="carousel-inner">
                             <!-- Slide 1: Pro Gee Dee Ventures -->
                             <div class="carousel-item active">
@@ -1259,7 +1259,44 @@ $otherCompanies = $gdv->getOtherCompanies();
                 </div>
             </div>
         </section>
-
+<!-- Gallery Section -->
+<section id="gallery" class="section bg-white">
+    <div class="container">
+        <h2 class="section-title text-center mb-4">Our Gallery</h2>
+        <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-wrap="true" data-bs-pause="false" data-bs-touch="true" data-bs-keyboard="false">
+            <div class="carousel-inner">
+                <?php
+                $galleryDir = __DIR__ . '/assets/gallery/';
+                $galleryUrl = 'assets/gallery/';
+                $images = array_values(array_filter(scandir($galleryDir), function($file) use ($galleryDir) {
+                    return !is_dir($galleryDir . $file) && preg_match('/\\.(jpg|jpeg|png|gif)$/i', $file);
+                }));
+                $chunked = array_chunk($images, 3);
+                foreach ($chunked as $i => $row) {
+                ?>
+                <div class="carousel-item<?php if($i==0) echo ' active'; ?>">
+                    <div class="row g-4 justify-content-center">
+                        <?php foreach ($row as $img): ?>
+                        <div class="col-md-4">
+                            <div class="card h-100 shadow-sm">
+                                <img src="<?php echo $galleryUrl . $img; ?>" class="card-img-top img-fluid" alt="Gallery Image" style="object-fit:cover; width:100%; height:320px;" loading="lazy">
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+</section>
         <!-- YouTube Video Section -->
         <section id="youtube-video" class="section">
             <div class="container">
